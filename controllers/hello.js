@@ -10,5 +10,5 @@ var fn_goodbye = async (ctx, next) => {
 
 module.exports = {
   'GET /hello/:name': fn_hello,
-  'GET /goodbye':fn_goodbye
+
 };
