@@ -10,6 +10,7 @@ module.exports = {
   'POST /api/login': async (ctx, next) => {
     let username = ctx.request.body.username;
     let password = ctx.request.body.password;
+    console.log("await 前")
     let user = await userService.findOne({username});
     console.log("想登录")
     console.log(user);
@@ -24,8 +25,11 @@ module.exports = {
     let password = ctx.request.body.password;
     let createTime = new Date();
     console.log(username);
-    userService.insert(username, password, createTime);
+    let message = await userService.insert(username, password, createTime);
+    console.log("等待后");
     // => POST body
-    ctx.body = JSON.stringify(ctx.request.body);
+    console.log(ctx);
+    ctx.response.status = message.code;
+    ctx.body = JSON.stringify(message);
   },
 };
