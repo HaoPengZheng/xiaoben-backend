@@ -35,9 +35,6 @@ module.exports = {
   },
   'GET /api/captcha': async (ctx, next) => {
     let captcha = userService.createCaptcha();
-    console.log(captcha.text);
-    ctx.session.captchaNumber = captcha.text;
-    console.log(ctx.session.captchaNumber);
     ctx.body = captcha;
   },
 
