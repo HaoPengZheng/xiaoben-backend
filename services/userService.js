@@ -1,5 +1,5 @@
 var User = require("../models/user");
-
+var svgCaptcha = require('svg-captcha');
 
 class UserService {
   constructor() {
@@ -71,6 +71,12 @@ class UserService {
       }
     })
     return user;
+  }
+
+  createCaptcha() {
+    // 随机生成一个验证码
+    var captcha = svgCaptcha.create();
+    return captcha;
   }
 }
 

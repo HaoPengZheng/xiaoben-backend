@@ -2,18 +2,19 @@ const Koa = require('koa');
 
 const controller = require('./middleware/controller');
 const rest = require('./middleware/rest');
-var cors = require('koa2-cors');
-
-const app = new Koa();
+const cors = require('koa2-cors');
 const router = require('koa-router')();
 const koaBody = require('koa-body');
- 
+
+const app = new Koa();
+
+
 
 
 // log request URL:
 app.use(async (ctx, next) => {
-    console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
-    await next();
+  console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
+  await next();
 });
 
 let staticFiles = require('./middleware/static-files');
@@ -29,7 +30,8 @@ router.post('/users', koaBody(),
 app.use(rest.restify());
 app.use(router.routes());
 app.use(controller());
-app.use(cors()); 
+app.use(cors());
+
 app.listen(3000);
 
 console.log('app started at port 3000...');

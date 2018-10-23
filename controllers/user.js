@@ -5,18 +5,19 @@ const UserService = require('../services/userService')
 
 const User = require("../models/user");
 
+
 let userService = new UserService();
 module.exports = {
   'POST /api/login': async (ctx, next) => {
     let username = ctx.request.body.username;
     let password = ctx.request.body.password;
     console.log("await 前")
-    let user = await userService.findOne({username});
+    let user = await userService.findOne({ username });
     console.log("想登录")
     console.log(user);
-    if(user.password == password){
+    if (user.password == password) {
       ctx.body = "登录成功";
-    }else{
+    } else {
       ctx.body = "登录失败";
     }
   },
@@ -32,4 +33,12 @@ module.exports = {
     ctx.response.status = message.code;
     ctx.body = JSON.stringify(message);
   },
+  'GET /api/captcha': async (ctx, next) => {
+    let captcha = userService.createCaptcha();
+    console.log(captcha.text);
+    ctx.session.captchaNumber = captcha.text;
+    console.log(ctx.session.captchaNumber);
+    ctx.body = captcha;
+  },
+
 };
