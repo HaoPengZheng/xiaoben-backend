@@ -10,9 +10,9 @@ module.exports = {
                 console.log(`Process API ${ctx.request.method} ${ctx.request.url}...`);
                 ctx.rest = (data) => {
                     ctx.response.type = 'application/json';
-                    ctx.response.header("Access-Control-Allow-Origin", "*");
-                    ctx.response.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-                    ctx.response.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+                    ctx.header("Access-Control-Allow-Origin", "*");
+                    ctx.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+                    ctx.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
                     ctx.response.body = data;
                 }
                 try {
