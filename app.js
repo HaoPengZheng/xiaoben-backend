@@ -2,6 +2,7 @@ const Koa = require('koa');
 
 const controller = require('./middleware/controller');
 const rest = require('./middleware/rest');
+var cors = require('koa2-cors');
 
 const app = new Koa();
 const router = require('koa-router')();
@@ -28,7 +29,7 @@ router.post('/users', koaBody(),
 app.use(rest.restify());
 app.use(router.routes());
 app.use(controller());
- 
+app.use(cors()); 
 app.listen(3000);
 
 console.log('app started at port 3000...');
