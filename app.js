@@ -30,8 +30,16 @@ router.post('/users', koaBody(),
 app.use(rest.restify());
 app.use(router.routes());
 app.use(controller());
-app.use(cors());
-
+app.use(cors({
+  origin: function(ctx) {
+    return '*';
+  },
+  exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+  maxAge: 5,
+  credentials: true,
+  allowMethods: ['GET', 'POST', 'DELETE'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}));
 app.listen(3000);
 
 console.log('app started at port 3000...');
