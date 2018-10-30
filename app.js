@@ -7,7 +7,6 @@ const router = require('koa-router')();
 const koaBody = require('koa-body');
 
 const app = new Koa();
-app.use(cors());
 
 
 
