@@ -61,14 +61,13 @@ class UserService {
   async findOne(wherestr) {
     let user = {};
     await User.findOne(wherestr, function (err, res) {
-      console.log("await 中")
       if (err) {
         console.log("Error:" + err);
       }
       else {
         console.log("Res:" + res);
-        user = res;
       }
+      user = res;
     })
     return user;
   }

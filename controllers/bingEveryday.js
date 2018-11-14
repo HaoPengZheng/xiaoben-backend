@@ -6,7 +6,6 @@ var fn_Pic = async (ctx, next) => {
       bingPic =  response;
     }
   )
-  console.log("2")
   ctx.response.type ='application/json'
   ctx.response.status = 200;
   ctx.body = bingPic;

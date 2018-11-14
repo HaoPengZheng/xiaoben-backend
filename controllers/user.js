@@ -11,25 +11,21 @@ module.exports = {
   'POST /api/login': async (ctx, next) => {
     let username = ctx.request.body.username;
     let password = ctx.request.body.password;
-    console.log("await 前")
-    let user = await userService.findOne({ username });
-    console.log("想登录")
-    console.log(user);
-    if (user.password == password) {
+    console.log(password);
+    let user = await userService.findOne({ username })
+    if (user!=null&&password == user.password) {
       ctx.body = "登录成功";
     } else {
       ctx.body = "登录失败";
+      ctx.status = 400;
     }
   },
   'POST /api/user': async (ctx, next) => {
     let username = ctx.request.body.username;
     let password = ctx.request.body.password;
     let createTime = new Date();
-    console.log(username);
     let message = await userService.insert(username, password, createTime);
-    console.log("等待后");
     // => POST body
-    console.log(ctx);
     ctx.response.status = message.code;
     ctx.body = JSON.stringify(message);
   },
