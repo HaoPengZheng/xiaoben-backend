@@ -33,11 +33,11 @@ app.use((ctx, next) => {
   })
 })
 
-app.use(koajwt({
-  secret: tokenConfig.secretKey
-}).unless({
-  path: tokenConfig.unlessPath
-}));
+// app.use(koajwt({
+//   secret: tokenConfig.secretKey
+// }).unless({
+//   path: tokenConfig.unlessPath
+// }));
 
 router.post('/users', koaBody(),
   (ctx) => {
