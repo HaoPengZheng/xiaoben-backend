@@ -5,6 +5,6 @@ var fn_saveLocation = async (ctx, next) => {
 
 
 module.exports = {
-  'POST ': fn_saveLocation,
+  'POST /public/location': fn_saveLocation,
 
 };
