@@ -10,6 +10,10 @@ const tokenConfig = require('./utils/token-config')
 const app = new Koa();
 app.use(cors());
 
+const socket = require('./socket/index')
+socket.init(app)
+let s = socket.getSocket()
+
 
 
 // log request URL:
