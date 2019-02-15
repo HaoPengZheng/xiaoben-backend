@@ -3,6 +3,7 @@ const LocationService = require('../services/locationService')
 const SocketHelper = require('../socket/index')
 var fn_saveLocation = async (ctx, next) => {
   let locationService = new LocationService()
+  console.log(ctx.request.body)
   let message = await locationService.insert(ctx.request.body.latitude, ctx.request.body.longitude, new Date().toDateString());
 
   if(SocketHelper.getSocket()){
